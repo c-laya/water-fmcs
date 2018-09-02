@@ -75,7 +75,7 @@ def plot_res(e, p, id, nx, prb, psb):
             pl1.append(sum([1 for y in d_i if y >= x]) / n)
             pl2.append(sum([1 for y in d_s if y >= x]) / n)
         cval = cmap_sm.to_rgba(a)
-        ax.plot(bins, pl1, color=cval, label='Posib. exced.={]'.format(a))
+        ax.plot(bins, pl1, color=cval, label='Posib. exced.={}'.format(a))
         ax.plot(bins, pl2, color=cval)
         if psb == 1 - a:
             pr1 = np.percentile(d_i, 100 * prb, axis=0)
@@ -168,8 +168,8 @@ q = Link.value_type['EN_FLOW']
 
 # Creando la db en pandas
 ind = ['ID', 'Elem', 'Alpha', 'Niv', 'Param', 'NS', 'Val']
-# db=pd.DataFrame([],columns=ind) # Activar esta columna para un análisis desde cero
-db = pd.read_csv(archivo_resultados, index_col=0)
+db=pd.DataFrame([],columns=ind) # Activar esta columna para un análisis desde cero
+#db = pd.read_csv(archivo_resultados, index_col=0)
 
 # Leyendo archivo red de Epanet (archivo *.inp)
 file = os.path.join(os.getcwd(), archivo_red)
@@ -257,8 +257,8 @@ for niv in a:
             red_temp = open(archivo_temp, 'w+')
             i = 1
             for line in red_ini:
-                if i - nd < fi <= i:
-                    red_temp.write("{} {:.6%}\n".format(dn[i - fi], rl[j][i-fi]))
+                if fi <= i < fi + nd:
+                    red_temp.write("{} {:.6}\n".format(dn[i - fi], rl[j][i - fi]))
                 else:
                     red_temp.write(line)
                 i += 1
