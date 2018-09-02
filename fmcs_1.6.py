@@ -160,8 +160,8 @@ q=Link.value_type['EN_FLOW']
 
 #Creando la db en pandas
 ind=['ID','Elem','Alpha','Niv','Param','NS','Val']
-db=pd.DataFrame([],columns=ind) #Activar esta columna para un análisis desde cero
-#db=pd.read_csv(archivo_resultados,index_col=0)
+#db=pd.DataFrame([],columns=ind) #Activar esta columna para un análisis desde cero
+db=pd.read_csv(archivo_resultados,index_col=0)
 
 #Leyendo archivo red de Epanet (archivo *.inp)
 file = os.path.join(os.getcwd(),archivo_red)
